@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
-public class EveMouvement : MonoBehaviour
+public class  EveMouvement : MonoBehaviour
 {
     public Rigidbody rb;
-    // Start is called before the first frame update
+    public static bool eveMouvement = false;
+
     void Start()
     {
-	StartCoroutine(MyMethod());
-	
-        
+        StartCoroutine(MyMethod());        
     }
-    IEnumerator MyMethod() {
-	yield return new WaitForSeconds(5);
-	rb.AddForce(0,0,800); 
+
+    IEnumerator MyMethod() 
+    {
+        rb.AddForce(0,0,800);
+	    yield return new WaitForSeconds(5);
+        eveMouvement = true;
     }
-    // Update is called once per frame
+
     void Update()
     {
-     
-        
+      
     }
 }
