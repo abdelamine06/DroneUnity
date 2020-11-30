@@ -14,7 +14,7 @@ public class Drone1Mouvement : MonoBehaviour
     }
     private void Update()
     {
-        if (EveMouvement.eveMouvement == true)
+        if (SensorBehavior.detectedMotion == true)
         {
             dir = target.position - transform.position;
             transform.Translate(dir.normalized* speed * Time.deltaTime, Space.World);
