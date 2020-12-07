@@ -12,7 +12,7 @@ public class  EveMouvement : MonoBehaviour
 
     IEnumerator SomeWait() 
     {
-        rb.AddForce(0,0,1200);
+        rb.AddForce(0,0,5000);
 	    yield return new WaitForSeconds(5);
     }
 

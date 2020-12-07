@@ -12,11 +12,11 @@ public static bool detectedMotion = false;
         Ray ray = new Ray(transform.position,Vector2.down);
         RaycastHit hitInfo;
 
-        if(Physics.Raycast(ray,out hitInfo,30)){
+        if(Physics.Raycast(ray,out hitInfo,100)){
             Debug.DrawLine(ray.origin, hitInfo.point, Color.red);
             detectedMotion = true;
         }else{
-            Debug.DrawLine(ray.origin, ray.origin+ray.direction*30, Color.green);
+            Debug.DrawLine(ray.origin, ray.origin+ray.direction*100, Color.green);
         }
     }
 }
