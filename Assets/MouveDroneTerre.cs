@@ -1,20 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class MouveDroneTerre : MonoBehaviour
 {
-	public Rigidbody MouveDroneTerre;
-
-
+    public float speed = 15f;
+    private Transform target;
+    private int waypointIndex = 0 ;
+    private Vector3 dir;
     void Start()
     {
-         rigid.AddForce(0,1200,5000);     
+	    target = WaypointsDroneTerre.points[0];	
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+      
+            dir = target.position - transform.position;
+            transform.Translate(dir.normalized* speed * Time.deltaTime, Space.World);	
+            if(Vector3.Distance(transform.position, target.position) <= 0.2)
+            {
+                GetNextWaypoint();
+            }      
         
     }
+   private void GetNextWaypoint()
+    {
+        if(waypointIndex == Waypoints.points.Length)
+        {
+          
+            waypointIndex = 0;
+            speed = 0f;
+            dir = target.position - transform.position;
+                transform.Translate(dir.normalized* speed * Time.deltaTime, Space.World);	
+           
+
+        }
+	
+        waypointIndex++;
+        target = WaypointsDroneTerre.points[waypointIndex];
+    }
+	
+
+   
+	
+
+
 }
