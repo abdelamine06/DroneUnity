@@ -7,18 +7,22 @@ public class MouveDroneTerre : MonoBehaviour
     private Vector3 dir;
     void Start()
     {
-	    target = WaypointsDroneTerre.points[0];	
+	target = WaypointsDroneTerre.points[0];	
     }
 
     private void Update()
     {
-      
-            dir = target.position - transform.position;
+      if(DroneMouvement.PortailOpen == true)
+	{
+	dir = target.position - transform.position;
             transform.Translate(dir.normalized* speed * Time.deltaTime, Space.World);	
             if(Vector3.Distance(transform.position, target.position) <= 0.2)
             {
                 GetNextWaypoint();
-            }      
+            }    
+	
+	}
+             
         
     }
    private void GetNextWaypoint()
@@ -28,6 +32,7 @@ public class MouveDroneTerre : MonoBehaviour
           
             waypointIndex = 0;
             speed = 0f;
+	    MouvePortail.DroneTclose = true;
             dir = target.position - transform.position;
                 transform.Translate(dir.normalized* speed * Time.deltaTime, Space.World);	
            
@@ -35,6 +40,7 @@ public class MouveDroneTerre : MonoBehaviour
         }
 	
         waypointIndex++;
+	
         target = WaypointsDroneTerre.points[waypointIndex];
     }
 	

@@ -2,6 +2,7 @@ using UnityEngine;
 public class DroneMouvement : MonoBehaviour
 {
     public float speed = 1500f;
+    public static bool PortailOpen = false;
     private Transform target;
     private int waypointIndex = 0 ;
     private Vector3 dir;
@@ -27,6 +28,8 @@ public class DroneMouvement : MonoBehaviour
     {
         if(waypointIndex == Waypoints.points.Length-1)
         {
+	
+	
           
             waypointIndex = 0;
             speed = 0f;
@@ -38,6 +41,10 @@ public class DroneMouvement : MonoBehaviour
         }
 	
         waypointIndex++;
+	if(waypointIndex == 1)
+	{
+		PortailOpen = true;
+	}
         target = Waypoints.points[waypointIndex];
     }
 	
